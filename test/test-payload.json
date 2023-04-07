@@ -1,0 +1,32 @@
+[
+  {
+    "eventID": "05f5305a0a3375e643bc0de6b1257ef8",
+    "eventName": "INSERT",
+    "eventVersion": "1.1",
+    "eventSource": "aws:dynamodb",
+    "awsRegion": "eu-west-1",
+    "dynamodb": {
+      "ApproximateCreationDateTime": 1680185407,
+      "Keys": {
+        "PK": {
+          "S": "2"
+        }
+      },
+      "NewImage": {
+        "name": {
+          "S": "Bob"
+        },
+        "PK": {
+          "S": "2"
+        },
+        "value": {
+          "N": "33"
+        }
+      },
+      "SequenceNumber": "100000000017491089594",
+      "SizeBytes": 20,
+      "StreamViewType": "NEW_IMAGE"
+    },
+    "eventSourceARN": "arn:aws:dynamodb:eu-west-1:759207268306:table/EbPipesDemoStack-OrdersTable315BB997-1TNCOQ9PDHDMK/stream/2023-03-30T13:39:06.949"
+  }
+]
