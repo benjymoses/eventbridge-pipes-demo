@@ -21,8 +21,8 @@ Enrichment is provided by a Step Functions Express workflow that performs two ac
 ### Deployment instructions
   
 > 💡 **Assumption**: you must have `npm` and `cdk` installed to use this demo as well as `AWS CLI` with a configured profile. [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/) | [AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html) | [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-  
-1. In the root of the project is a `config.ts` file. Open this and update the value of `notificationEmail` from *'nowhere@example.com'* to your email address. (this is the e-mail address SNS will use to send "fraud" order messages to)
+
+1. In the root of the project create a file named `.env` and add `NOTIFICATION_EMAIL=nowhere@example.com` changing the value from *'nowhere@example.com'* to your email address. (this is the e-mail address SNS will use to send "fraud" order messages to)
 2. In the root of the project, in your terminal run `npm install` to install all project dependencies.
 3. *(Optional)* if you have never used AWS CDK with your target AWS account then you need to run `cdk bootstrap` to prepare your account for use with AWS CDK.
 4. Once you're ready run `cdk deploy`. 
@@ -30,6 +30,30 @@ Enrichment is provided by a Step Functions Express workflow that performs two ac
 The stack is now deployed and ready to use.
 
 ### Using the demo
+
+1. In the output of the CDK deploy operation above will be the name of the DynamoDB Table. In your `.env` file add a new entry for the DynamoDB table, for example `TABLE_NAME=EbPipesDemoStack-OrdersTable-someGUIDhere` replacing the table name with the value from the CDK output. It should now look something like:
+
+```bash
+NOTIFICATION_EMAIL=myemail@domain.com
+TABLE_NAME=EbPipesDemoStack-OrdersTable123456789
+```
+2. Next change in to the *generator* folder and run `npm install` again to install the generator's dependencies.
+3. Lastly, run `node ./generator.js`.
+
+If you are logged in to a valid AWS session, this will attempt to write 25 new entries to your DynamoDB table with valid field names and random values. Ensure you see a *200* response.
+
+At this point, you can now inspect the causal chain of AWS services involved to see the interaction from end to end with:
+
+- Dynamo DB
+- EventBridge Pipes
+- Step Functions
+- CloudWatch Logs
+- SNS
+
+> 💡 If the Step functions console doesn't show you the execution history. Click the button to enable execution history in express workflows (see screenshot)
+
+![Step Functions console](./images/step-functions-screenshot.png "Step Functions Execution History")
+
 
 ### Deleting the stack
 When you are ready to delete the stack simply run `cdk destroy` and confirm that you want to delete the stack.
