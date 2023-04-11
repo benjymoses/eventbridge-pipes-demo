@@ -15,8 +15,10 @@ The filtering uses the same pattern types as EventBridge Rules. In the context o
 
 Enrichment is provided by a Step Functions Express workflow that performs two actions. First, it reformats the message in to the shape for a domain event. Lastly, it mocks a call to a fraud checking service by using a `Pass` state and the `States.MathRandom()` [intrinsic function](https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-intrinsic-functions.html).
 
-> Insert architecture diagram
+![Architecture Diagram](./images/diagram.png "AWS Architecture Diagram")
+*(automatically generated with **[cdk-dia](https://github.com/pistazie/cdk-dia)**)*
 
+<!-- <img src=./images/diagram.png height=75% width=75% /> -->
 
 ### Deployment instructions
   
